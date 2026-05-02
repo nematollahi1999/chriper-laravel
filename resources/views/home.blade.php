@@ -1,18 +1,16 @@
 <x-layout>
     <x-slot:title>
-        Welcome to Chirper
+        Home Feed
     </x-slot:title>
-    @forelse($chirps as $chirp)
-    <div class="card bg-base-100 shadow mt-8">
-        <div class="card-body">
-            <div>
-                <div class="font-bold">{{ $chirp->user ? $chirp->user->name : 'Anonymous' }}</div>
-                <div class="mt-1">{{ $chirp->message }}</div>
-                <div class="text-xs text-gray-500 mt-2">{{ $chirp->created_at->diffForHumans() }}</div>
-            </div>
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-2xl font-bold mt-4">Latest Chirps</h1>
+
+        <div class="space-y-4 mt-8">
+            @forelse($chirps as $chirp)
+                <x-chirp :chirp="$chirp" />
+            @empty
+                <p class="text-center text-gray-500 mt-8">No chirps yet!</p>
+            @endforelse
         </div>
     </div>
-    @empty
-        <p class="text-center text-gray-500 mt-8">No chirps yet!</p>
-    @endforelse
 </x-layout>
