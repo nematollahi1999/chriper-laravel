@@ -33,7 +33,17 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate the request data
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        //Create a new chirp associated with the authenticated user
+        Chirp::create([
+            'message' => $validated['message'],
+        ]);
+
+        return redirect('/')->with('success', 'Chirp Created!');
     }
 
     /**
