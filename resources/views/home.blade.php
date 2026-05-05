@@ -10,7 +10,7 @@
                 @csrf
                 <div class="form-control w-full">
                     <textarea name="message" placeholder="What's on your mind?" class="textarea textarea-bordered w-full resize-none @error('message') textarea-error @enderror"
-                    rows="4" ></textarea>
+                    rows="4" maxlength="255">{{ old('message') }}</textarea>
                     @error('message')
                     <div class="label">
                         <p class="text-error label-text-alt text-sm">{{ $message }}</p>
